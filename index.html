@@ -1,0 +1,547 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<title>SPI LINK | Sadashiv — KLE Technological University</title>
+<style>
+:root {
+  --bg:#07111f; --panel:#0d1b2d; --panel2:#10243a;
+  --line:#233951; --cyan:#56e4ff; --blue:#6e8cff;
+  --text:#edf6ff; --muted:#9db1c8; --green:#5ce0ad;
+  --amber:#ffc66d; --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--text);
+ font:15px/1.7 system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+button,select{font:inherit}
+button{cursor:pointer}
+.wrap{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;z-index:10;background:#07111feF;
+ border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
+.nav{display:flex;align-items:center;justify-content:space-between;
+ gap:20px;min-height:68px}
+.brand{font-weight:900;letter-spacing:2px;font-size:19px}
+.brand span{color:var(--cyan)}
+nav{display:flex;gap:17px;flex-wrap:wrap;font-size:12px}
+nav a{color:var(--muted)}
+.hero{position:relative;overflow:hidden;padding:88px 0 64px;
+ background:radial-gradient(ellipse at 80% 20%,#143d5970,transparent 45%),
+ radial-gradient(ellipse at 10% 80%,#253b7250,transparent 45%)}
+.hero:before{content:"";position:absolute;inset:0;opacity:.12;
+ background-image:linear-gradient(#56e4ff33 1px,transparent 1px),
+ linear-gradient(90deg,#56e4ff33 1px,transparent 1px);
+ background-size:36px 36px;pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;
+ gap:48px;align-items:center}
+.eyebrow{color:var(--cyan);font-size:11px;font-weight:800;
+ letter-spacing:2.5px;text-transform:uppercase}
+h1{font-size:clamp(48px,8vw,88px);line-height:.98;letter-spacing:-4px;
+ margin:17px 0 22px}
+h1 span{color:var(--cyan)}
+h2{font-size:clamp(25px,4vw,37px);line-height:1.2;letter-spacing:-1px}
+h3{font-size:17px;margin:0 0 10px}
+p{color:var(--muted)}
+.lead{font-size:17px;max-width:650px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{border:1px solid var(--line);border-radius:10px;padding:11px 17px;
+ background:var(--panel);color:var(--text);font-weight:700}
+.btn.primary{background:var(--cyan);color:#06111d;border-color:var(--cyan)}
+.btn:hover{filter:brightness(1.12)}
+.panel{background:linear-gradient(145deg,#10243a,#0a1728);
+ border:1px solid var(--line);border-radius:var(--radius);padding:23px}
+.hero-art{border:1px solid #31516d;border-radius:22px;padding:20px;
+ background:#081624e8;box-shadow:0 25px 100px #0006}
+svg{max-width:100%;height:auto}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.stat{padding:17px;border:1px solid var(--line);border-radius:13px;background:#0b1929}
+.stat strong{display:block;color:var(--cyan);font-size:25px}
+.stat span{font-size:12px;color:var(--muted)}
+section{padding:66px 0}
+.section-head{max-width:740px;margin-bottom:28px}
+.section-head p{max-width:650px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.card{padding:21px;border:1px solid var(--line);border-radius:15px;background:var(--panel)}
+.card p{margin-bottom:0}
+.icon{color:var(--cyan);font-size:23px;margin-bottom:9px}
+.tag{display:inline-block;padding:4px 9px;border-radius:20px;
+ font-size:11px;font-weight:800;background:#173448;color:var(--cyan)}
+.tag.green{background:#123a31;color:var(--green)}
+.tag.amber{background:#3c2e1c;color:var(--amber)}
+.callout{padding:17px 20px;border-left:3px solid var(--cyan);
+ background:#0d2032;border-radius:0 12px 12px 0;margin:18px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--cyan);font-weight:800;background:#10243a}
+td{color:#dce8f5}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+tr:last-child td{border-bottom:0}
+.code{background:#050d17;border:1px solid #24394f;padding:17px;
+ border-radius:12px;overflow:auto;color:#b7f3ff;
+ font:13px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre}
+.signal{display:grid;grid-template-columns:85px 1fr;gap:15px;align-items:start;
+ padding:14px 0;border-bottom:1px solid var(--line)}
+.signal:last-child{border:0}
+.signal b{color:var(--cyan)}
+.step{display:grid;grid-template-columns:42px 1fr;gap:13px;margin:19px 0}
+.num{width:35px;height:35px;display:grid;place-items:center;border:1px solid var(--cyan);
+ border-radius:10px;color:var(--cyan);font-weight:900}
+.step p{margin:3px 0}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.controls button{padding:9px 14px;border-radius:8px;border:1px solid var(--line);
+ color:var(--text);background:var(--panel)}
+.controls button.active{background:var(--cyan);color:#07111f}
+.bitrow{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}
+.bit{width:56px;height:60px;display:grid;place-items:center;border:1px solid var(--line);
+ border-radius:10px;background:#081523;color:var(--muted);font-weight:900;font-size:23px}
+.bit.one{color:var(--cyan);border-color:var(--cyan);background:#103047}
+.bom-total{display:flex;justify-content:space-between;gap:15px;align-items:center;
+ padding:20px 0;font-size:19px}
+.bom-total strong{font-size:28px;color:var(--cyan)}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:12px}
+.small{font-size:12px}
+.muted{color:var(--muted)}
+.kicker{color:var(--cyan);font-weight:800}
+.timeline{border-left:1px solid #31516d;margin-left:7px;padding-left:22px}
+.timeline>div{position:relative;margin:0 0 24px}
+.timeline>div:before{content:"";position:absolute;width:9px;height:9px;
+ border-radius:50%;background:var(--cyan);left:-27px;top:8px}
+@media(max-width:800px){
+ .hero-grid,.grid2{grid-template-columns:1fr}
+ .grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ nav{display:none}h1{letter-spacing:-2px}
+ section{padding:48px 0}
+}
+@media(max-width:480px){.grid3{grid-template-columns:1fr}.panel{padding:16px}}
+@media print{
+ header,.actions,.controls{display:none}
+ body{background:white;color:#152337}
+ p,td{color:#334}
+ .panel,.card,.stat{background:white;border-color:#ccc}
+ section{padding:25px 0}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#home">SPI<span>_LINK</span></a>
+  <nav>
+   <a href="#overview">Overview</a><a href="#architecture">Architecture</a>
+   <a href="#circuit">Connections</a><a href="#protocol">Protocol</a>
+   <a href="#bom">BOM</a><a href="#validation">Validation</a>
+  </nav>
+  <button class="btn" onclick="window.print()">Export / Print</button>
+ </div>
+</header>
+
+<main id="home">
+<section class="hero">
+ <div class="wrap">
+  <div class="hero-grid">
+   <div>
+    <div class="eyebrow">Digital electronics · Hardware communication</div>
+    <h1>SPI <span>LINK</span></h1>
+    <p class="lead">Making serial communication visible — one bit, one clock, one transaction at a time.</p>
+    <p>Design and implementation of a four-bit Master-to-Slave communication demonstrator using shift registers and discrete logic.</p>
+    <div class="actions">
+     <a class="btn primary" href="#architecture">Explore the system ↘</a>
+     <a class="btn" href="#bom">View bill of materials</a>
+    </div>
+    <div class="stats">
+     <div class="stat"><strong>04</strong><span>Data bits</span></div>
+     <div class="stat"><strong>02</strong><span>Core shift registers</span></div>
+     <div class="stat"><strong>03</strong><span>Primary interface signals</span></div>
+     <div class="stat"><strong>5 V</strong><span>Target logic supply</span></div>
+    </div>
+   </div>
+   <div class="hero-art">
+    <div class="eyebrow">Signal path / 001</div>
+    <svg viewBox="0 0 440 350" role="img" aria-label="Master to Slave data path diagram">
+     <defs><filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+     <g fill="none" stroke="#254861" stroke-width="1">
+      <path d="M10 45H430M10 85H430M10 125H430M10 165H430M10 205H430M10 245H430M10 285H430M10 325H430"/>
+      <path d="M40 10V340M80 10V340M120 10V340M160 10V340M200 10V340M240 10V340M280 10V340M320 10V340M360 10V340M400 10V340"/>
+     </g>
+     <rect x="18" y="88" width="115" height="102" rx="12" fill="#102c42" stroke="#56e4ff"/>
+     <text x="75" y="111" fill="#56e4ff" font-size="11" text-anchor="middle">MASTER</text>
+     <text x="75" y="138" fill="#edf6ff" font-size="14" text-anchor="middle" font-weight="bold">74HC165</text>
+     <text x="75" y="157" fill="#9db1c8" font-size="10" text-anchor="middle">PISO REGISTER</text>
+     <text x="75" y="175" fill="#9db1c8" font-size="10" text-anchor="middle">4-bit input</text>
+     <rect x="307" y="88" width="115" height="102" rx="12" fill="#102c42" stroke="#6e8cff"/>
+     <text x="364" y="111" fill="#8ea7ff" font-size="11" text-anchor="middle">SLAVE</text>
+     <text x="364" y="138" fill="#edf6ff" font-size="14" text-anchor="middle" font-weight="bold">74HC595</text>
+     <text x="364" y="157" fill="#9db1c8" font-size="10" text-anchor="middle">SIPO REGISTER</text>
+     <text x="364" y="175" fill="#9db1c8" font-size="10" text-anchor="middle">4 LED outputs</text>
+     <path d="M133 112H307" stroke="#56e4ff" stroke-width="2" filter="url(#glow)"/>
+     <path d="M133 140H307" stroke="#6e8cff" stroke-width="2"/>
+     <path d="M133 168H307" stroke="#5ce0ad" stroke-width="2"/>
+     <text x="220" y="103" fill="#56e4ff" font-size="11" text-anchor="middle">MOSI · DATA</text>
+     <text x="220" y="132" fill="#8ea7ff" font-size="11" text-anchor="middle">SCLK · CLOCK</text>
+     <text x="220" y="160" fill="#5ce0ad" font-size="11" text-anchor="middle">CONTROL</text>
+     <path d="M364 190V228H220V256" stroke="#6e8cff" stroke-width="2" fill="none"/>
+     <rect x="143" y="256" width="154" height="48" rx="9" fill="#10243a" stroke="#31516d"/>
+     <text x="220" y="276" fill="#edf6ff" font-size="11" text-anchor="middle">OUTPUT LATCH</text>
+     <text x="220" y="291" fill="#9db1c8" font-size="10" text-anchor="middle">LED pattern</text>
+     <text x="220" y="330" fill="#56e4ff" font-size="10" text-anchor="middle">PARALLEL → SERIAL → PARALLEL</text>
+    </svg>
+    <p class="small">Conceptual signal path. Refer to the pin-by-pin notes below for implementation details.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="overview">
+<div class="wrap">
+ <div class="section-head">
+  <div class="eyebrow">01 / Project brief</div>
+  <h2>From four switches to a serial message.</h2>
+  <p>SPI LINK demonstrates the transformation of parallel digital inputs into a timed serial stream, then back into a parallel output pattern.</p>
+ </div>
+ <div class="grid3">
+  <article class="card"><div class="icon">◈</div><h3>Problem</h3><p>Parallel data requires multiple signal wires. Serial transmission sends bits sequentially using fewer data connections.</p></article>
+  <article class="card"><div class="icon">⌁</div><h3>Solution</h3><p>A 74HC165 captures the switch word, and a 74HC595 receives the serial stream and drives indicator LEDs.</p></article>
+  <article class="card"><div class="icon">◎</div><h3>Learning outcome</h3><p>Understand shift registers, clock synchronization, chip selection, data ordering, and digital circuit troubleshooting.</p></article>
+ </div>
+ <div class="panel" style="margin-top:17px">
+  <h3>Project profile</h3>
+  <div class="grid2">
+   <div><p><b class="kicker">AUTHOR</b><br>Sadashiv</p><p><b class="kicker">INSTITUTION</b><br>KLE Technological University</p></div>
+   <div><p><b class="kicker">DOMAIN</b><br>Digital Electronics / Embedded Hardware</p><p><b class="kicker">PROJECT STATUS</b><br><span class="tag green">Reported completed</span></p></div>
+  </div>
+  <p class="small">The hardware status is supplied by the project author. Performance measurements and screenshots should be attached before marking individual tests as verified.</p>
+ </div>
+</div>
+</section>
+
+<section id="architecture" style="background:#091625">
+<div class="wrap">
+ <div class="section-head"><div class="eyebrow">02 / System architecture</div><h2>Every block has a job.</h2><p>The communication path and the timing-control path are separate functions. Keeping them distinct makes the circuit easier to debug.</p></div>
+ <div class="grid2">
+  <article class="card"><span class="tag">INPUT</span><h3 style="margin-top:12px">Four DIP switches</h3><p>Represent the data word D3–D0. Each input needs a defined logic level when its switch is open.</p></article>
+  <article class="card"><span class="tag">TRANSMITTER</span><h3 style="margin-top:12px">74HC165 · PISO</h3><p>Parallel-in/serial-out register. Loads a group of inputs, then shifts them toward the QH serial output.</p></article>
+  <article class="card"><span class="tag">TIMING</span><h3 style="margin-top:12px">NE555 + 74HC393</h3><p>The 555 can provide clock pulses. The counter can track clock events; additional sequencing logic may be needed to create a complete transaction.</p></article>
+  <article class="card"><span class="tag">RECEIVER</span><h3 style="margin-top:12px">74HC595 · SIPO</h3><p>Serial-in/parallel-out register. Receives bits through SER and updates output pins when RCLK latches the shift-register contents.</p></article>
+ </div>
+ <div class="callout"><b>Design note:</b> A 74HC393 is a binary counter, not a complete SPI controller. Confirm the clock count, reset, load, and latch sequence with logic probes or an oscilloscope.</div>
+ <h3 style="margin-top:30px">Why these ICs?</h3>
+ <div class="table-wrap"><table>
+ <thead><tr><th>Component</th><th>Role</th><th>Why it is used</th></tr></thead>
+ <tbody>
+ <tr><td>74HC165</td><td>Parallel → serial</td><td>Captures switch inputs in parallel and shifts them out over one data line.</td></tr>
+ <tr><td>74HC595</td><td>Serial → parallel</td><td>Reconstructs received data and has a separate output latch.</td></tr>
+ <tr><td>NE555</td><td>Clock source</td><td>Can generate periodic clock pulses in astable mode.</td></tr>
+ <tr><td>74HC393</td><td>Pulse counting</td><td>Counts clock events; reset and decoding are needed to define the transfer length.</td></tr>
+ <tr><td>74HC04</td><td>Inversion</td><td>Generates complementary logic where required. It does not by itself create a full transaction controller.</td></tr>
+ </tbody></table></div>
+</div>
+</section>
+
+<section id="circuit">
+<div class="wrap">
+ <div class="section-head"><div class="eyebrow">03 / Circuit reference</div><h2>Pin-by-pin connections.</h2><p>These connections apply to the common 16-pin DIP variants. Confirm the datasheet for the exact manufacturer and package you own.</p></div>
+ <h3>74HC165 · Master input register</h3>
+ <div class="table-wrap"><table>
+ <thead><tr><th>Pin</th><th>Signal</th><th>Connection</th></tr></thead>
+ <tbody>
+ <tr><td>1</td><td>SH/LD</td><td>Dedicated active-low load control: LOW loads inputs; HIGH permits shifting.</td></tr>
+ <tr><td>2</td><td>CLK</td><td>SCLK, with CLK INH (pin 15) LOW.</td></tr>
+ <tr><td>3</td><td>E</td><td>D0 switch input.</td></tr><tr><td>4</td><td>F</td><td>D1 switch input.</td></tr>
+ <tr><td>5</td><td>G</td><td>D2 switch input.</td></tr><tr><td>6</td><td>H</td><td>D3 switch input.</td></tr>
+ <tr><td>7</td><td>QH̅</td><td>Complementary serial output; unused in this design.</td></tr>
+ <tr><td>8</td><td>GND</td><td>Common ground.</td></tr><tr><td>9</td><td>QH</td><td>MOSI to 74HC595 SER (pin 14).</td></tr>
+ <tr><td>10</td><td>SER</td><td>GND if no serial cascading or extra input is required.</td></tr>
+ <tr><td>11–14</td><td>A–D</td><td>Unused parallel inputs tied to defined logic levels, e.g. GND.</td></tr>
+ <tr><td>15</td><td>CLK INH</td><td>GND to enable clocking.</td></tr><tr><td>16</td><td>VCC</td><td>Regulated +5 V.</td></tr>
+ </tbody></table></div>
+
+ <h3 style="margin-top:30px">74HC595 · Slave output register</h3>
+ <div class="table-wrap"><table>
+ <thead><tr><th>Pin</th><th>Signal</th><th>Connection</th></tr></thead>
+ <tbody>
+ <tr><td>1</td><td>QB</td><td>LED for bit 1 through its own resistor.</td></tr>
+ <tr><td>2</td><td>QC</td><td>LED for bit 2 through its own resistor.</td></tr>
+ <tr><td>3</td><td>QD</td><td>LED for bit 3 through its own resistor.</td></tr>
+ <tr><td>4–7</td><td>QE–QH</td><td>Unused outputs; leave unconnected.</td></tr>
+ <tr><td>8</td><td>GND</td><td>Common ground.</td></tr><tr><td>9</td><td>QH'</td><td>Serial cascade output; unused.</td></tr>
+ <tr><td>10</td><td>SRCLR</td><td>+5 V to prevent asynchronous clearing.</td></tr>
+ <tr><td>11</td><td>SRCLK</td><td>SCLK, shared with the 74HC165 clock.</td></tr>
+ <tr><td>12</td><td>RCLK</td><td>Separate latch-control signal. A LOW-to-HIGH edge transfers shift data to outputs.</td></tr>
+ <tr><td>13</td><td>OE</td><td>GND to enable outputs.</td></tr>
+ <tr><td>14</td><td>SER</td><td>MOSI from 74HC165 QH pin 9.</td></tr>
+ <tr><td>15</td><td>QA</td><td>LED for bit 0 through its own resistor.</td></tr>
+ <tr><td>16</td><td>VCC</td><td>Regulated +5 V.</td></tr>
+ </tbody></table></div>
+ <div class="callout"><b>Important correction:</b> Do not simply connect one active-low CS signal to the 74HC165 SH/LD and assume it also provides correct 74HC595 latching. The 165 must load first, then shift; the 595 must latch after the intended bits have arrived. Design and verify these control events separately.</div>
+ <h3>Power and wiring checklist</h3>
+ <div class="grid2">
+  <div class="card"><h3>Supply</h3><p>Both ICs: pin 16 to +5 V and pin 8 to GND. Connect all grounds, including the timer and counter, together.</p></div>
+  <div class="card"><h3>Decoupling</h3><p>Place a 100 nF ceramic capacitor close to each IC between VCC and GND. Check the exact timer and counter pinouts separately.</p></div>
+  <div class="card"><h3>Switches</h3><p>Use pull-up or pull-down resistors so open switches never leave the 165 inputs floating. Add debouncing if switches initiate timing events.</p></div>
+  <div class="card"><h3>LEDs</h3><p>Use one current-limiting resistor per LED. Verify polarity and keep the IC within its specified output-current limits.</p></div>
+ </div>
+</div>
+</section>
+
+<section id="protocol" style="background:#091625">
+<div class="wrap">
+ <div class="section-head"><div class="eyebrow">04 / Protocol explorer</div><h2>Watch a four-bit word travel.</h2><p>Choose an input word to explore the intended MSB-first sequence. This is a conceptual walkthrough, not a live measurement of the physical circuit.</p></div>
+ <div class="panel">
+  <label for="pattern"><b>Select input pattern</b></label>
+  <div class="controls">
+   <button class="active" data-bits="1010">1010</button>
+   <button data-bits="0000">0000</button>
+   <button data-bits="1111">1111</button>
+   <button data-bits="0101">0101</button>
+   <button data-bits="1000">1000</button>
+   <button data-bits="0001">0001</button>
+  </div>
+  <p>Master DIP inputs · D3 D2 D1 D0</p>
+  <div id="inputBits" class="bitrow"><div class="bit one">1</div><div class="bit">0</div><div class="bit one">1</div><div class="bit">0</div></div>
+  <div class="grid2">
+   <div class="card"><div class="eyebrow">Serial sequence</div><h3 id="sequence">1 → 0 → 1 → 0</h3><p>Intended MSB-first MOSI sequence, one bit per selected clock event.</p></div>
+   <div class="card"><div class="eyebrow">Expected receiver word</div><h3 id="outputWord">1010</h3><p>Expected after correct sampling, bit ordering, and output latching.</p></div>
+  </div>
+  <div class="controls"><button id="nextBit" class="active">Step through bits →</button><button id="resetBits">Reset walkthrough</button></div>
+  <p id="stepStatus" aria-live="polite">Ready. Select Step through bits to begin.</p>
+  <div id="clockBits" class="bitrow"><div class="bit">—</div><div class="bit">—</div><div class="bit">—</div><div class="bit">—</div></div>
+ </div>
+ <h3 style="margin-top:32px">Signals in plain language</h3>
+ <div class="panel">
+  <div class="signal"><b>MOSI</b><div><strong>What bit is being sent?</strong><p>The serial data line from Master to Slave. The receiver must sample it at the correct clock edge.</p></div></div>
+  <div class="signal"><b>SCLK</b><div><strong>When is the bit shifted?</strong><p>Clock edges advance the registers. The chosen edge and data setup time must match the circuit timing.</p></div></div>
+  <div class="signal"><b>CS</b><div><strong>Which transaction is active?</strong><p>Chip-select polarity is implementation-dependent. A conventional active-low CS is LOW during selection, but it is not automatically the 165 load signal or the 595 latch signal.</p></div></div>
+  <div class="signal"><b>RCLK</b><div><strong>When do LEDs update?</strong><p>The 595 copies its shift-register contents into the output register on the RCLK rising edge.</p></div></div>
+ </div>
+ <h3 style="margin-top:30px">Transaction sequence</h3>
+ <div class="timeline">
+  <div><b>1. Set inputs</b><p>Configure D3–D0 using the DIP switches.</p></div>
+  <div><b>2. Load</b><p>Pulse SH/LD LOW to capture the parallel inputs; then return it HIGH for shifting.</p></div>
+  <div><b>3. Shift four bits</b><p>Apply four suitable clock pulses and check the MOSI data at the receiver's sampling edge.</p></div>
+  <div><b>4. Latch</b><p>After the correct word has arrived, pulse RCLK LOW-to-HIGH to update the output register.</p></div>
+  <div><b>5. Verify</b><p>Compare the four LED states against the original DIP word. Repeat with different patterns.</p></div>
+ </div>
+</div>
+</section>
+
+<section id="timing">
+<div class="wrap">
+ <div class="section-head"><div class="eyebrow">05 / Timing design</div><h2>Clock generation is not transaction control.</h2><p>The NE555 can generate a periodic clock. A counter can count edges. A complete four-bit interface must also establish a correct load window and a latch event.</p></div>
+ <div class="grid2">
+  <div class="card"><h3>NE555 astable clock</h3><p>RA, RB, and the timing capacitor set the approximate oscillator frequency. For a conventional astable arrangement:</p><div class="code">f ≈ 1.44 / ((RA + 2RB) × C)</div><p class="small">This estimate assumes the usual 555 astable topology. Actual frequency depends on component tolerance and the specific circuit.</p></div>
+  <div class="card"><h3>74HC393 pulse counter</h3><p>The counter can count clock transitions and supply divided-frequency outputs. Its ripple outputs are not automatically a clean four-pulse CS generator.</p><p class="small">Use appropriate reset and decoding/sequencing logic, and verify output transitions with probes before connecting to the registers.</p></div>
+ </div>
+ <div class="callout"><b>Timing acceptance criteria:</b> one intentional parallel load, exactly four effective shift events, valid data at each sampling edge, and one output-latch edge after the fourth bit. The precise CS waveform and clock mode should be documented from the final schematic.</div>
+</div>
+</section>
+
+<section id="bom" style="background:#091625">
+<div class="wrap">
+ <div class="section-head"><div class="eyebrow">06 / Bill of materials</div><h2>Prototype cost breakdown.</h2><p>Editable planning estimates in INR. These are illustrative budget figures, not supplier quotations. Adjust quantities and prices to match the actual completed hardware.</p></div>
+ <div class="controls">
+  <button id="addParts" class="active">Show complete BOM</button>
+  <button id="coreParts">Core components only</button>
+ </div>
+ <div class="table-wrap"><table id="bomTable">
+ <thead><tr><th>Component</th><th>Specification</th><th>Qty.</th><th>Unit (₹)</th><th>Subtotal (₹)</th></tr></thead>
+ <tbody></tbody>
+ </table></div>
+ <div class="bom-total"><span>Estimated parts total</span><strong id="bomTotal">₹0</strong></div>
+ <p id="bomNote" class="small">Prices are indicative and should be replaced with actual purchase prices. Shipping, tools, and PCB fabrication are excluded.</p>
+ <div class="callout">The 74HC04 may be needed for signal inversion, but the final circuit could require additional logic components depending on how the transaction controller is implemented. Add any missing parts after checking the final schematic.</div>
+ <h3 style="margin-top:32px">BOM cost distribution</h3>
+ <div id="costBars"></div>
+</div>
+</section>
+
+<section id="validation">
+<div class="wrap">
+ <div class="section-head"><div class="eyebrow">07 / Testing and evidence</div><h2>Separate expected results from measured results.</h2><p>The project is reported as completed by the author. The following checklist records the evidence needed to substantiate the final performance.</p></div>
+ <div class="callout"><span class="tag amber">Evidence pending</span><p>Do not mark a test as passed unless the observation has actually been recorded. Replace the pending labels with measured outcomes and add screenshots or photographs from the real project.</p></div>
+ <div class="table-wrap"><table>
+ <thead><tr><th>Test</th><th>Input</th><th>Expected result</th><th>Evidence status</th></tr></thead>
+ <tbody id="testRows"></tbody>
+ </table></div>
+ <h3 style="margin-top:30px">Evidence checklist</h3>
+ <div id="evidenceList" class="grid2"></div>
+ <h3 style="margin-top:30px">Troubleshooting guide</h3>
+ <div class="table-wrap"><table><thead><tr><th>Symptom</th><th>Likely cause</th><th>Check</th></tr></thead><tbody>
+ <tr><td>No LEDs illuminate</td><td>Supply, OE, or wiring issue</td><td>Measure VCC, verify common ground, and check LED polarity.</td></tr>
+ <tr><td>Wrong bit order</td><td>Shift sequence or output mapping mismatch</td><td>Probe QH and confirm which input bit appears first.</td></tr>
+ <tr><td>Random data</td><td>Floating inputs or noisy clock</td><td>Define unused input levels and inspect the clock waveform.</td></tr>
+ <tr><td>LEDs update too early</td><td>Incorrect RCLK timing</td><td>Verify that the latch edge occurs after all intended bits arrive.</td></tr>
+ <tr><td>Incorrect number of shifts</td><td>Counter reset or decode error</td><td>Count the actual clock edges reaching both registers.</td></tr>
+ <tr><td>Hardware differs from simulation</td><td>Wiring, timing, or component mismatch</td><td>Check continuity, IC orientation, supply quality, and datasheet pinouts.</td></tr>
+ </tbody></table></div>
+</div>
+</section>
+
+<section id="conclusion" style="background:#091625">
+<div class="wrap">
+ <div class="section-head"><div class="eyebrow">08 / Outcome</div><h2>A small circuit. A foundational concept.</h2></div>
+ <p class="lead">SPI LINK brings together parallel-to-serial conversion, serial-to-parallel reconstruction, clock synchronization, and output latching in an observable digital system.</p>
+ <div class="grid3">
+  <div class="card"><h3>Applications</h3><p>Digital electronics labs, serial-interface demonstrations, and hardware prototyping.</p></div>
+  <div class="card"><h3>Limitations</h3><p>Four-bit payload, discrete timing logic, and a need for careful sequencing and validation.</p></div>
+  <div class="card"><h3>Future scope</h3><p>Bidirectional transfer, eight-bit operation, PCB integration, and measured timing analysis.</p></div>
+ </div>
+ <h3 style="margin-top:32px">Technical references</h3>
+ <ul class="muted">
+  <li><a href="https://www.ti.com/product/SN74HC165" target="_blank" rel="noreferrer">Texas Instruments — SN74HC165 product and datasheet</a></li>
+  <li><a href="https://www.ti.com/product/SN74HC595" target="_blank" rel="noreferrer">Texas Instruments — SN74HC595 product and datasheet</a></li>
+  <li><a href="https://www.ti.com/product/NE555" target="_blank" rel="noreferrer">Texas Instruments — NE555 timer</a></li>
+  <li><a href="https://www.ti.com" target="_blank" rel="noreferrer">Texas Instruments — logic IC datasheets for 74HC393 and 74HC04</a></li>
+  <li><a href="https://www.kicad.org/" target="_blank" rel="noreferrer">KiCad — schematic and PCB design software</a></li>
+ </ul>
+ <div class="panel" style="margin-top:28px">
+  <div class="eyebrow">Designed by</div><h2 style="margin:7px 0">Sadashiv</h2>
+  <p>KLE Technological University · Digital Electronics Project</p>
+  <p class="small">SPI LINK · Design documentation and learning portfolio</p>
+ </div>
+</div>
+</section>
+</main>
+
+<footer><div class="wrap" style="display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap">
+ <span>SPI_LINK / SADASHIV</span><span>KLE Technological University</span>
+ <span>Engineering portfolio · <span id="year"></span></span>
+</div></footer>
+
+<script>
+const patterns = document.querySelectorAll('[data-bits]');
+let selected = '1010', step = 0;
+const inputBits = document.getElementById('inputBits');
+const clockBits = document.getElementById('clockBits');
+const sequence = document.getElementById('sequence');
+const outputWord = document.getElementById('outputWord');
+const stepStatus = document.getElementById('stepStatus');
+
+function renderBits(target, bits, revealed=4) {
+ target.innerHTML = '';
+ [...bits].forEach((bit,i)=>{
+  const el=document.createElement('div');
+  el.className='bit'+(bit==='1' && i<revealed?' one':'');
+  el.textContent=i<revealed?bit:'—';
+  target.appendChild(el);
+ });
+}
+function selectPattern(bits) {
+ selected=bits;step=0;
+ patterns.forEach(b=>b.classList.toggle('active',b.dataset.bits===bits));
+ renderBits(inputBits,bits);
+ sequence.textContent=[...bits].join(' → ');
+ outputWord.textContent=bits;
+ renderBits(clockBits,'----',0);
+ stepStatus.textContent='Ready. Select Step through bits to begin.';
+}
+patterns.forEach(b=>b.addEventListener('click',()=>selectPattern(b.dataset.bits)));
+document.getElementById('nextBit').addEventListener('click',()=>{
+ if(step<4)step++;
+ renderBits(clockBits,selected,step);
+ stepStatus.textContent=step===0?'Ready.':
+  step<4?`Clock event ${step}: transmitted bit ${selected[step-1]}.`:
+  `Four bits shown: ${selected}. The physical circuit still needs a correctly timed latch event.`;
+});
+document.getElementById('resetBits').addEventListener('click',()=>selectPattern(selected));
+
+const parts=[
+ {name:'Shift register',spec:'74HC165, DIP-16',qty:1,price:25,core:true},
+ {name:'Shift register',spec:'74HC595, DIP-16',qty:1,price:20,core:true},
+ {name:'Timer IC',spec:'NE555, DIP-8',qty:1,price:10,core:true},
+ {name:'Binary counter',spec:'74HC393, DIP-14',qty:1,price:25,core:true},
+ {name:'Hex inverter',spec:'74HC04, DIP-14',qty:1,price:15,core:true},
+ {name:'DIP switch bank',spec:'4-position',qty:2,price:15,core:true},
+ {name:'LED indicators',spec:'3 mm / 5 mm',qty:4,price:2,core:true},
+ {name:'LED resistors',spec:'1 kΩ, ¼ W',qty:4,price:1,core:true},
+ {name:'Input resistors',spec:'10 kΩ, ¼ W',qty:8,price:1,core:true},
+ {name:'Timer resistors',spec:'1 kΩ + 10 kΩ',qty:2,price:1,core:true},
+ {name:'Timing capacitor',spec:'100 nF ceramic',qty:1,price:3,core:true},
+ {name:'Decoupling capacitors',spec:'100 nF ceramic',qty:5,price:3,core:true},
+ {name:'Timing/reset capacitor',spec:'10 µF electrolytic',qty:1,price:3,core:true},
+ {name:'Breadboard',spec:'Solderless prototype board',qty:1,price:120,core:false},
+ {name:'Jumper wire set',spec:'Male-to-male assortment',qty:1,price:80,core:false},
+ {name:'5 V supply',spec:'Regulated USB supply',qty:1,price:100,core:false}
+];
+let coreOnly=false;
+const bomBody=document.querySelector('#bomTable tbody');
+const bomTotal=document.getElementById('bomTotal');
+const costBars=document.getElementById('costBars');
+function renderBom(){
+ bomBody.innerHTML='';let total=0;
+ parts.filter(p=>!coreOnly||p.core).forEach(p=>{
+  const sub=p.qty*p.price;total+=sub;
+  const tr=document.createElement('tr');
+  [p.name,p.spec,p.qty,`₹${p.price}`,`₹${sub}`].forEach(v=>{
+   const td=document.createElement('td');td.textContent=v;tr.appendChild(td);
+  });
+  bomBody.appendChild(tr);
+ });
+ bomTotal.textContent='₹'+total.toLocaleString('en-IN');
+ costBars.innerHTML='';
+ const groups=[
+  ['Semiconductors',parts.slice(0,5).reduce((s,p)=>s+p.qty*p.price,0)],
+  ['Inputs and passive parts',parts.slice(5,13).reduce((s,p)=>s+p.qty*p.price,0)],
+  ['Prototyping and supply',parts.slice(13).reduce((s,p)=>s+p.qty*p.price,0)]
+ ];
+ groups.forEach(([name,cost])=>{
+  const row=document.createElement('div');row.style.margin='14px 0';
+  const label=document.createElement('div');label.style.display='flex';
+  label.style.justifyContent='space-between';label.innerHTML='<span>'+name+'</span><b>₹'+cost+'</b>';
+  const bar=document.createElement('div');bar.style.cssText='height:7px;background:#1b3045;border-radius:8px;margin-top:7px;overflow:hidden';
+  const fill=document.createElement('div');fill.style.cssText=`height:100%;width:${total?cost/total*100:0}%;background:linear-gradient(90deg,#56e4ff,#6e8cff);border-radius:8px`;
+  bar.appendChild(fill);row.append(label,bar);costBars.appendChild(row);
+ });
+}
+document.getElementById('addParts').addEventListener('click',()=>{
+ coreOnly=false;document.getElementById('addParts').classList.add('active');
+ document.getElementById('coreParts').classList.remove('active');renderBom();
+});
+document.getElementById('coreParts').addEventListener('click',()=>{
+ coreOnly=true;document.getElementById('coreParts').classList.add('active');
+ document.getElementById('addParts').classList.remove('active');renderBom();
+});
+
+const tests=[
+ ['All zeros','0000','All four outputs LOW'],
+ ['All ones','1111','All four outputs HIGH'],
+ ['Alternating','1010','Outputs match the intended pattern'],
+ ['Inverse alternating','0101','Outputs match the intended pattern'],
+ ['MSB only','1000','Only the mapped MSB output HIGH'],
+ ['LSB only','0001','Only the mapped LSB output HIGH']
+];
+const testRows=document.getElementById('testRows');
+tests.forEach(([test,input,expected])=>{
+ const tr=document.createElement('tr');
+ [test,input,expected].forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});
+ const td=document.createElement('td');const tag=document.createElement('span');
+ tag.className='tag amber';tag.textContent='Evidence pending';td.appendChild(tag);tr.appendChild(td);
+ testRows.appendChild(tr);
+});
+const evidence=[
+ 'Photograph of the completed breadboard and IC orientation',
+ 'Proteus schematic and simulation screenshot',
+ 'MOSI and SCLK waveform with four counted clock events',
+ 'Measured oscillator frequency and component values',
+ 'LED output observations for at least four test patterns',
+ 'Final schematic showing load, shift, reset, and latch controls'
+];
+const evidenceList=document.getElementById('evidenceList');
+evidence.forEach((v,i)=>{
+ const label=document.createElement('label');label.className='card';
+ label.style.cssText='display:flex;gap:10px;align-items:flex-start';
+ const input=document.createElement('input');input.type='checkbox';input.style.marginTop='6px';
+ const text=document.createElement('span');text.textContent=v;
+ label.append(input,text);evidenceList.appendChild(label);
+});
+document.getElementById('year').textContent=new Date().getFullYear();
+selectPattern('1010');renderBom();
+</script>
+</body>
+</html>
